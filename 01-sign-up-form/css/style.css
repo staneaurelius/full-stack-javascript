@@ -1,0 +1,111 @@
+html {
+    font-size: 16px;
+}
+
+:root {
+    --white-grey: #F9FAFB;
+    --dark-grey: #1E1E1E;
+    --green: #33B249;
+}
+
+body {
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.sidebar {
+    flex: 1;
+}
+
+/* Content Styling */
+.call-to-action p, fieldset p{
+    font-size: 1.25rem;
+    font-weight: 550;
+    line-height: 1.5em;
+}
+
+.content {
+    flex: 2;
+    background-color: var(--white-grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.call-to-action {
+    padding: 0 144px 0 48px;
+    margin-bottom: 32px;
+}
+
+/* Form & Fieldset */
+legend {
+    display: none;
+}
+
+fieldset {
+    background-color: white;
+    border: none;
+    padding: 0 48px;
+}
+
+label, input {
+    display: block;
+}
+
+.input-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 72px;
+    margin-bottom: 24px;
+}
+
+.input-container:last-child {
+    margin-bottom: 32px;
+}
+
+label {
+    font-size: 0.6rem;
+    font-weight: 550;
+    color: var(--dark-grey);
+    text-transform: uppercase;
+    letter-spacing: 0.3ch;
+    margin-bottom: 4px;
+}
+
+input {
+    padding: 4px 8px;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 4px;
+}
+
+/* Sign up button and login */
+input, button, .content > p {
+    font-size: 0.8rem;
+}
+
+button {
+    background-color: var(--green);
+    color: var(--white-grey);
+    font-weight: 600;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 32px;
+    margin: 32px 48px;
+    cursor: pointer;
+}
+
+.content > p {
+    margin: 0 48px;
+    font-weight: 550;
+}
+
+a {
+    text-decoration: none;
+    color: var(--green);
+}
+
+a:visited {
+    color: #551A8B;
+}
