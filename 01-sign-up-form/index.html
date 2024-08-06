@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="logo">
+                <h1>Logo</h1>
+            </div>
+            <p>Photo by ...</p>
+        </div>
+        <div class="content">
+            <div class="quote">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quod omnis accusantium quaerat eos necessitatibus expedita corporis, nisi quae cupiditate soluta, laboriosam a. Fugit repellat, quos eum in quas vel.</p>
+                <p>Author</p>
+            </div>
+            <form action="" method="">
+                <fieldset>
+                    <legend>Let's do this!</legend>
+                    <div>
+                        <label for="first-name">First Name</label>
+                        <input type="text" minlength="1" maxlength="64" id="first-name" name="first-name" placeholder="John" required>
+                        <label for="last-name">Last Name</label>
+                        <input type="text" maxlength="64" id="last-name" name="last-name" placeholder="Doe">
+                    </div>
+                    
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+                        <label for="phone-number">Phone Number</label>
+                        <input type="tel" id="phone-number" name="phone-number" placeholder="123456">
+                    </div>
+                    
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                </fieldset>
+                <button type="submit">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="#">Log in</a></p>
+        </div>
+    </body>
+</html>
