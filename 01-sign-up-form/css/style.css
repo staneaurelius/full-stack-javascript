@@ -48,6 +48,7 @@ fieldset {
     background-color: white;
     border: none;
     padding: 0 48px;
+    box-shadow: 0 12px 8px -8px #DFDFDF;
 }
 
 label, input {
