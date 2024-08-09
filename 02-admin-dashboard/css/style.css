@@ -11,6 +11,8 @@ html {
     --gray-shadow: #9CA3AF;
     --gray-text: #6B7280;
     --white: #F8F8F8;
+    --red: #EF4444;
+    --green: #16A34A;
 }
 
 /* Web Layout */
@@ -154,7 +156,7 @@ h2 {
     font-weight: 600;
 }
 
-.card, .announcement-cards {
+.card, .announcement-cards, .trending-users {
     background-color: var(--white);
     border-radius: 8px;
     padding: 24px;
@@ -221,7 +223,6 @@ h4 {
 }
 
 .announcement-cards {
-    display: grid;
     grid-template-rows: repeat(3, 1fr);
 }
 
@@ -234,4 +235,55 @@ h4 {
     margin: 4px 0;
     line-height: 1rem;
     color: var(--gray-text);
+}
+
+/* Trending */
+.trending-users {
+    grid-template-rows: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.user-card {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    column-gap: 16px;
+    align-items: center;
+}
+
+.user-card img {
+    grid-row: 1 / 3;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 8px;
+}
+
+.blue-background {
+    background-color: var(--blue);
+}
+
+.grey-background {
+    background-color: var(--gray-text);
+}
+
+.green-background {
+    background-color: var(--green);
+}
+
+.red-background {
+    background-color: var(--red);
+}
+
+.user-card p {
+    margin: 0;
+}
+
+.user-card p:first-child {
+    font-size: 0.75rem;
+    align-self: end;
+}
+
+.user-card p:last-child {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    align-self: start;
 }
