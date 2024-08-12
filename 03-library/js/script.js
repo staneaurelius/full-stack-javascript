@@ -60,3 +60,16 @@ bookCollection.forEach((book) => {
     console.log(`adding ${book.title} to library`);
     addBookToLibrary(library, book);
 });
+
+// Add listener to button that would open to dialog for adding new book
+const addBookButton = document.querySelector('#add-book'),
+    dialogWindow = document.querySelector('dialog'),
+    closeDialogButton = document.querySelector('#close');
+
+addBookButton.addEventListener('click', () => {
+    dialogWindow.showModal();
+});
+
+closeDialogButton.addEventListener('click', () => {
+    dialogWindow.close();
+});

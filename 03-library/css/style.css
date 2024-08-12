@@ -28,7 +28,7 @@ h1, h2 {
     font-family: Georgia, Garamond, serif;
 }
 
-h1 {
+.header h1 {
     font-size: 2.125rem;
     letter-spacing: 0.5rem;
     margin: 32px;
@@ -51,11 +51,14 @@ h1 span {
 }
 
 /* Book and Creases */
-.book {
+.book, #add-book {
     background-color: var(--book-bg);
     border: 0.5px solid var(--book-crease);
     border-radius: 8px 0 0 8px;
     box-shadow: 8px 8px 4px -4px var(--book-crease);
+}
+
+.book {
     padding-left: 8px;
     display: grid;
     grid-template-columns: 12px auto;
@@ -92,4 +95,142 @@ h2 {
 .author {
     font-size: 1rem;
     font-weight: 550;
+}
+
+/* Add book button */
+#add-book {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    color: var(--text-black);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.125rem;
+    cursor: pointer;
+}
+
+#add-book:hover {
+    filter: brightness(0.8);
+}
+
+#add-book svg {
+    width: 4rem;
+    height: 4rem;
+}
+
+/* Dialog */
+dialog {
+    color: var(--text-black);
+    border: none;
+    border-radius: 8px;
+}
+
+form, fieldset, .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form {
+    align-items: center;
+    gap: 16px;
+    padding: 16px 12px;
+}
+
+form h1, form p {
+    margin: 0;
+}
+
+form h1 {
+    font-size: 2rem;
+}
+
+form p {
+    font-size: 1rem;
+    font-style: italic;
+}
+
+fieldset {
+    border: none;
+    gap: 16px;
+}
+
+legend {
+    display: none;
+}
+
+.form-container {
+    gap: 4px;
+}
+
+label, input, textarea, ::placeholder {
+    font-size: 0.8rem;
+}
+
+label {
+    font-weight: 600;
+}
+
+input, textarea {
+    padding: 8px;
+    border: 1px solid var(--book-crease);
+    border-radius: 4px;
+}
+
+input:focus, textarea:focus {
+    outline-color: var(--text-brown);
+    box-shadow: 4px 4px 2px -2px var(--book-crease);
+}
+
+::placeholder {
+    color: var(--text-gray);
+    font-style: italic;
+}
+
+.red {
+    color: red;
+    font-size: 1rem;
+}
+
+/* Checkbox and dialog buttons */
+.row-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--text-brown);
+}
+
+.row-container button {
+    font-size: 0.8rem;
+    font-weight: 600;
+    width: 100%;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+.row-container button:hover {
+    filter: brightness(0.8);
+}
+
+#close {
+    background-color: var(--book-crease);
+}
+
+#submit {
+    color: white;
+    background-color: var(--text-brown);
+}
+
+::backdrop {
+    background-color: var(--text-black);
+    opacity: 0.5;
 }
