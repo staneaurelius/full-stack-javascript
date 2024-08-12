@@ -152,28 +152,58 @@ closeDialogButton.addEventListener('click', () => {
 
 
 // Add listener to bookmark button to toggle read status
-const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
-bookmarkButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        const bookInfoContainer = e.target.closest('.book-info');
-        const bookReadContainer = bookInfoContainer.parentNode.querySelector('.read-status');
-        bookReadContainer.classList.toggle('invisible');
+function addReadStatusButton() {
+    const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+    bookmarkButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const bookInfoContainer = e.target.closest('.book-info');
+            const bookReadContainer = bookInfoContainer.parentNode.querySelector('.read-status');
+            bookReadContainer.classList.toggle('invisible');
+        });
     });
-});
+};
+addReadStatusButton();
 
 
 // Add listener to delete buttons for deleting books
-const deleteButtons = document.querySelectorAll('.delete-btn');
-deleteButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        const bookInfoContainer = e.target.closest('.book-info');
-        const removedBook = bookInfoContainer.parentNode;
-        const removedBookTitle = removedBook.querySelector('h2').textContent;
-        removedBook.remove();
+function addDeleteButtons() {
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const bookInfoContainer = e.target.closest('.book-info');
+            const removedBook = bookInfoContainer.parentNode;
+            const removedBookTitle = removedBook.querySelector('h2').textContent;
+            removedBook.remove();
 
-        bookCollection = bookCollection.filter((book) => {
-            return book.title !== removedBookTitle;
+            bookCollection = bookCollection.filter((book) => {
+                return book.title !== removedBookTitle;
+            });
+            console.log(`Deleted book ${removedBookTitle}`);
         });
-        console.log(bookCollection);
     });
+};
+addDeleteButtons();
+
+
+// Add book via modal
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Get form data
+    const title = document.querySelector('#book-title').value;
+    const description = document.querySelector('#book-description').value;
+    const author = document.querySelector('#book-author').value;
+    const pages = document.querySelector('#page-count').value;
+    const read = document.querySelector('#read').checked;
+
+    // Create new book, add to collection, and display on page
+    const newBook = new createBook(title, author, pages, read, description);
+    bookCollection.push(newBook);
+    addBookToLibrary(library, newBook);
+    addReadStatusButton();
+    addDeleteButtons();
+
+    console.log(`Added new book ${title}`);
+    dialogWindow.close();
 });
