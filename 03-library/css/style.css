@@ -62,7 +62,7 @@ h1 span {
     padding-left: 8px;
     display: grid;
     grid-template-columns: 12px auto;
-    grid-template-rows: 2rem repeat(2, 1fr);
+    grid-template-rows: 2rem 3fr 4fr;
     column-gap: 16px;
     padding-right: 16px;
     text-align: center;
@@ -82,10 +82,20 @@ h1 span {
     font-size: 0.7rem;
     font-weight: 600;
     font-style: italic;
+    letter-spacing: 0.1ch;
     background-color: green;
     border-radius: 16px;
     margin-top: 16px;
     padding: 4px 8px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 4px;
+}
+
+.read-status svg {
+    width: 0.9rem;
+    height: 0.9rem;
 }
 
 .invisible {
@@ -114,6 +124,40 @@ h2 {
 .author {
     font-size: 1rem;
     font-weight: 550;
+}
+
+/* Bookmark container */
+.bookmark {
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    column-gap: 8px;
+}
+
+.bookmark p {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    justify-self: start;
+}
+
+.bookmark button {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: inherit;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.bookmark svg {
+    color: var(--text-black);
+    width: 1.75rem;
+    height: 1.75em;
+}
+
+.bookmark svg:hover {
+    width: 2rem;
+    height: 2rem;
 }
 
 /* Add book button */
