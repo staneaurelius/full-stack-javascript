@@ -10,6 +10,7 @@ function generateBookNode(book) {
     // Create all necessary elements of the book card on HTML
     const bookContainer = document.createElement('div'),
         bookCrease = document.createElement('div'),
+        readStatus = document.createElement('div'),
         bookTitle = document.createElement('h2'),
         bookInfo = document.createElement('div'),
         bookDesc = document.createElement('p'),
@@ -19,11 +20,16 @@ function generateBookNode(book) {
     // Add necessary classes on the element
     bookContainer.classList.add('book');
     bookCrease.classList.add('book-crease');
+    readStatus.classList.add('read-status');
     bookInfo.classList.add('book-info');
     bookDesc.classList.add('description');
     bookAuthor.classList.add('author')
+    if (!book.read) {
+        readStatus.classList.add('invisible');
+    };
 
     // Add content into the created elements
+    readStatus.textContent = 'Read';
     bookTitle.textContent = book.title;
     bookDesc.textContent = `"${book.description}"`;
     bookAuthor.textContent = `— ${book.author} —`;
@@ -34,7 +40,7 @@ function generateBookNode(book) {
         bookInfo.appendChild(infoElement);
     });
 
-    [bookCrease, bookTitle, bookInfo].forEach((bookElement) => {
+    [bookCrease, readStatus, bookTitle, bookInfo].forEach((bookElement) => {
         bookContainer.appendChild(bookElement);
     });
 
