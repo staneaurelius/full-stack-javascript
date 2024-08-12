@@ -82,22 +82,14 @@ h2 {
     align-self: start;
 }
 
-.quote {
+.description {
     font-size: 0.8rem;
     font-style: italic;
     color: var(--text-gray);
-}
-
-.quote::before, .quote::after {
-    content: '"'
 }
 
 /* Book info author */
 .author {
     font-size: 1rem;
     font-weight: 550;
-}
-
-.author::before, .author::after {
-    content: " — "
 }
