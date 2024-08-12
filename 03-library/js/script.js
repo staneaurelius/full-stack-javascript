@@ -25,6 +25,7 @@ function generateReadChecklist() {
 function generateBookmarkButton() {
     const bookmarkButton = document.createElement('button');
     bookmarkButton.setAttribute('type', 'button');
+    bookmarkButton.classList.add('bookmark-btn');
 
     // Generate bookmark svg
     const bookmarkSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -45,6 +46,7 @@ function generateBookmarkButton() {
 function generateDeleteButton() {
     const deleteButton = document.createElement('button');
     deleteButton.setAttribute('type', 'button');
+    deleteButton.classList.add('delete-btn');
 
     // Generate bookmark svg
     deleteSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -130,7 +132,6 @@ const bookCollection = [
 
 const library = document.querySelector('.library');
 bookCollection.forEach((book) => {
-    console.log(`adding ${book.title} to library`);
     addBookToLibrary(library, book);
 });
 
@@ -145,4 +146,14 @@ addBookButton.addEventListener('click', () => {
 
 closeDialogButton.addEventListener('click', () => {
     dialogWindow.close();
+});
+
+// Add listener to bookmark button to toggle read status
+const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
+bookmarkButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        const bookInfoContainer = e.target.closest('.book-info');
+        const bookReadContainer = bookInfoContainer.parentNode.querySelector('.read-status');
+        bookReadContainer.classList.toggle('invisible');
+    });
 });
