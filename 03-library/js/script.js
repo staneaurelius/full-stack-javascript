@@ -121,8 +121,9 @@ function addBookToLibrary(libraryNode, book) {
     libraryNode.appendChild(bookNode);
 };
 
+
 // Create 5 default books and add to HTML library container using loop
-const bookCollection = [
+let bookCollection = [
     new createBook('Romance of the Three Kingdoms', 'Luo Guanzhong', 672, true, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga, officiis.'),
     new createBook('The Art of War', 'Sun Tzu', 68, false, 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla, eos?'),
     new createBook('Dao De Jing', 'Laozi', 37, false, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, dicta.'),
@@ -134,6 +135,7 @@ const library = document.querySelector('.library');
 bookCollection.forEach((book) => {
     addBookToLibrary(library, book);
 });
+
 
 // Add listener to button that would open to dialog for adding new book
 const addBookButton = document.querySelector('#add-book'),
@@ -148,6 +150,7 @@ closeDialogButton.addEventListener('click', () => {
     dialogWindow.close();
 });
 
+
 // Add listener to bookmark button to toggle read status
 const bookmarkButtons = document.querySelectorAll('.bookmark-btn');
 bookmarkButtons.forEach((button) => {
@@ -155,5 +158,22 @@ bookmarkButtons.forEach((button) => {
         const bookInfoContainer = e.target.closest('.book-info');
         const bookReadContainer = bookInfoContainer.parentNode.querySelector('.read-status');
         bookReadContainer.classList.toggle('invisible');
+    });
+});
+
+
+// Add listener to delete buttons for deleting books
+const deleteButtons = document.querySelectorAll('.delete-btn');
+deleteButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        const bookInfoContainer = e.target.closest('.book-info');
+        const removedBook = bookInfoContainer.parentNode;
+        const removedBookTitle = removedBook.querySelector('h2').textContent;
+        removedBook.remove();
+
+        bookCollection = bookCollection.filter((book) => {
+            return book.title !== removedBookTitle;
+        });
+        console.log(bookCollection);
     });
 });
