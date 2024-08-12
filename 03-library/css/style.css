@@ -298,3 +298,16 @@ input[type="checkbox"] {
     background-color: var(--text-black);
     opacity: 0.5;
 }
+
+/* Footer */
+.footer {
+    width: 100%;
+    background-color: var(--book-crease);
+    margin-top: 32px;
+    text-align: center;
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: none;
+}
