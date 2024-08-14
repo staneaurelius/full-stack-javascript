@@ -1,0 +1,32 @@
+:root {
+    --dark-blue: #232C46;
+    --lighter-blue: #3F4E6B;
+    --neon-green: #78BC35;
+    --light-pink: #FF9B8D;
+    --white: #F7F7F7;
+    --shadow: #7B808F;
+}
+
+html {
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-size: 16px;
+    color: var(--white);
+}
+
+body {
+    background-color: var(--dark-blue);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header */
+h1 {
+    font-family: "Pacifico", cursive;
+    font-size: 2.5rem;
+    font-style: italic;
+    letter-spacing: 0.25ch;
+    margin: 32px;
+}
