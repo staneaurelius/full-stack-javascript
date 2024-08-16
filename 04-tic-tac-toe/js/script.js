@@ -81,10 +81,10 @@ function generateOSvg () {
 function displaySquareSign (square, sign) {
     let svg;
 
-    if (sign === 'o') {
-        svg = generateOSvg();
-    } else {
+    if (sign === 'x') {
         svg = generateXSvg();
+    } else {
+        svg = generateOSvg();
     };
 
     square.appendChild(svg);
@@ -93,9 +93,15 @@ function displaySquareSign (square, sign) {
 
 // IIFE function for controlling display
 const displayController = (function () {
-    const squares = document.querySelectorAll('.square');
-    const gameMessage = document.querySelector('#game-message')
+    // Get squares, message, and  player name
+    const newGameDialog = document.querySelector('#new-game'),
+        squares = document.querySelectorAll('.square'),
+        gameMessage = document.querySelector('#game-message'),
+        playerName = document.querySelector('#player-name'),
+        playerBox = document.querySelector('#player-sign'),
+        computerBox = document.querySelector('#computer-sign');
     
+    // Add listener to tic tac toe boxes
     squares.forEach((button) => {
         button.addEventListener('click', (e) => {
             if (e.target.classList.contains('enable')) {
@@ -108,4 +114,33 @@ const displayController = (function () {
             };
         });
     });
+
+    // Add listener for dialog
+    newGameDialog.showModal();
+    playForm = document.querySelector('form');
+    playForm.addEventListener('submit', (e) => {
+        const inputName = document.querySelector('#name-input').value;
+        const inputSign = document.querySelector('input[type="radio"]:checked').value;
+
+        // Update display
+        playerName.textContent = inputName;
+        playerBox.removeChild(playerBox.firstElementChild);
+        computerBox.removeChild(computerBox.firstElementChild);
+
+        if (inputSign === 'x') {
+            playerBox.insertBefore(generateXSvg(), playerBox.firstElementChild);
+            playerBox.setAttribute('data-index', 'x');
+            computerBox.insertBefore(generateOSvg(), computerBox.firstElementChild);
+        } else {
+            playerBox.insertBefore(generateOSvg(), playerBox.firstElementChild);
+            playerBox.setAttribute('data-index', 'o');
+            computerBox.insertBefore(generateXSvg(), computerBox.firstElementChild);
+        }
+    });
+
+    // For returning inputs
+    const getPlayerName = () => playerName.textContent;
+    const getPlayerSign = () => playerBox.getAttribute('data-index');
+
+    return {getPlayerName, getPlayerSign};
 })();

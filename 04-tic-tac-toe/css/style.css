@@ -4,6 +4,7 @@
     --neon-green: #78BC35;
     --light-pink: #FF9B8D;
     --white: #F7F7F7;
+    --black: #0A0A0A;
     --shadow: #7B808F;
 }
 
@@ -21,6 +22,108 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 32px;
+}
+
+svg g {
+    color: var(--neon-green);
+}
+
+svg circle {
+    color: var(--light-pink)
+}
+
+/* New Game Dialog */
+.default-font {
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-style: normal;
+    letter-spacing: normal;
+}
+
+#new-game {
+    background-color: var(--white);
+    color: var(--black);
+    margin-top: 32px;
+    padding: 48px 32px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#new-game h1 {
+    margin-top: 0;
+}
+
+#new-game p:not(:first-of-type) {
+    font-style: italic;
+}
+
+::backdrop {
+    background-color: var(--black);
+    opacity: 0.3;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+fieldset {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    background-color: var(--dark-blue);
+    opacity: 0.5;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+    box-shadow: 4px 4px 4px -2px var(--shadow);
+}
+
+label:has(input:checked) {
+    opacity: 1;
+}
+
+label svg {
+    height: 3rem;
+    width: 3rem;
+}
+
+#name-input {
+    border-radius: 8px;
+    border: 1px solid var(--shadow);
+    padding: 8px;
+}
+
+#name-input:focus {
+    outline-color: var(--dark-blue);
+}
+
+::placeholder {
+    font-style: italic;
+}
+
+button {
+    color: var(--white);
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: var(--lighter-blue);
+    box-shadow: 0px 4px 4px -2px var(--shadow);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 32px;
 }
 
 /* Header */
