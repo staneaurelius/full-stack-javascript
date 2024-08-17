@@ -124,6 +124,7 @@ button {
     border: none;
     border-radius: 8px;
     padding: 8px 32px;
+    cursor: pointer;
 }
 
 /* Header */

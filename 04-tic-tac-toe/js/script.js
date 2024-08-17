@@ -1,11 +1,3 @@
-// Constructor for creating player object
-function createPlayer (name, sign) {
-    let score = 0;
-    const getScore = () => score;
-    const addScore = () => score++;
-    return {name, sign, getScore, addScore};
-};
-
 // IIFE function for managing tic-tac-toe board
 const gameBoard = (function () {
     const board = Array(9);
@@ -15,6 +7,8 @@ const gameBoard = (function () {
     };
 
     const getSquare = (index) => board[index];
+
+    const getBoard = () => board;
     
     const resetBoard = function () {
         for (let i = 0; i < board.length; i++) {
@@ -22,7 +16,7 @@ const gameBoard = (function () {
         };
     };
 
-    return {setSquareSign, getSquare, resetBoard};
+    return {setSquareSign, getSquare, getBoard, resetBoard};
 })();
 
 // Function for generating X and O SVG
@@ -94,30 +88,72 @@ function displaySquareSign (square, sign) {
 // IIFE function for controlling display
 const displayController = (function () {
     // Get squares, message, and  player name
-    const newGameDialog = document.querySelector('#new-game'),
-        squares = document.querySelectorAll('.square'),
+    const squares = document.querySelectorAll('.square'),
         gameMessage = document.querySelector('#game-message'),
-        playerName = document.querySelector('#player-name'),
-        playerBox = document.querySelector('#player-sign'),
-        computerBox = document.querySelector('#computer-sign');
+        playerScore = document.querySelector('#player-score'),
+        computerScore = document.querySelector('#computer-score'),
+        resetButton = document.querySelector('#reset');
     
     // Add listener to tic tac toe boxes
     squares.forEach((button) => {
         button.addEventListener('click', (e) => {
+            const playerName = inputRecorder.getPlayerName(),
+                playerSign = inputRecorder.getPlayerSign(),
+                squareIndex = parseInt(e.target.getAttribute('data-index'));
+
             if (e.target.classList.contains('enable')) {
-                const squareIndex = parseInt(e.target.getAttribute('data-index'));
-                gameBoard.setSquareSign(squareIndex, 'x');
-                displaySquareSign(e.target, 'x');
-                gameMessage.textContent = "It's computer's turn"
+                displaySquareSign(e.target, playerSign);
+                gameBoard.setSquareSign(squareIndex, playerSign);
+                gameMessage.textContent = `${playerName} selected square ${parseInt(squareIndex) + 1}`;
+                const winnerName = checkWinner();
+
+                if (!winnerName) {
+                    emptySquare = gameBoard.getBoard().filter(
+                        (square) => square != null
+                    );
+                    
+                    if (emptySquare.length != 9) {
+                        gameController.moveComputer();
+                        checkWinner();
+                    };
+                } else {
+                    gameMessage.textContent = `The winner is ${winnerName}`;
+                    if (winnerName === 'Computer') {
+                        computerScore.textContent = parseInt(computerScore.textContent) + 1;
+                    } else {
+                        playerScore.textContent = parseInt(playerScore.textContent) + 1;
+                    };
+                };
             } else {
-                gameMessage.textContent = 'Please select another square'
+                gameMessage.textContent = 'Please select another square';
             };
         });
     });
 
+    resetButton.addEventListener('click', (e) => {
+        gameBoard.resetBoard();
+        squares.forEach((square) => {
+            if (square.firstElementChild) {
+                square.removeChild(square.firstElementChild);
+            };
+
+            if (!square.classList.contains('enable')) {
+                square.classList.toggle('enable');
+            };
+        });
+    });
+})();
+
+// IIFE Function for retrieving name and sign from modal
+const inputRecorder = (function () {
+    const newGameDialog = document.querySelector('#new-game'),
+        playForm = document.querySelector('form'),
+        playerName = document.querySelector('#player-name'),
+        playerBox = document.querySelector('#player-sign'),
+        computerBox = document.querySelector('#computer-sign');
+
     // Add listener for dialog
     newGameDialog.showModal();
-    playForm = document.querySelector('form');
     playForm.addEventListener('submit', (e) => {
         const inputName = document.querySelector('#name-input').value;
         const inputSign = document.querySelector('input[type="radio"]:checked').value;
@@ -135,6 +171,7 @@ const displayController = (function () {
             playerBox.insertBefore(generateOSvg(), playerBox.firstElementChild);
             playerBox.setAttribute('data-index', 'o');
             computerBox.insertBefore(generateXSvg(), computerBox.firstElementChild);
+            gameController.moveComputer();
         }
     });
 
@@ -144,3 +181,73 @@ const displayController = (function () {
 
     return {getPlayerName, getPlayerSign};
 })();
+
+// IIFE Function for controlling computer and monitoring board
+const gameController = (function () {
+    const moveComputer = () => {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * 9);
+        } while (gameBoard.getSquare(randomIndex));
+
+        const computerSign = inputRecorder.getPlayerSign() === 'x' ?
+            'o' :
+            'x';
+
+        const computerSquare = document.querySelector(`.square[data-index="${randomIndex}"]`);
+        displaySquareSign(computerSquare, computerSign);
+        gameBoard.setSquareSign(randomIndex, computerSign);
+    };
+
+    const winningPattern = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontal winning condition
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // vertical winning condition
+        [0, 4, 8], [2, 4, 6] // diagonal winning condition
+    ];
+
+    const checkBoard = () => {
+        let winner;
+        const board = gameBoard.getBoard();
+        const xPattern = [],
+            oPattern = [];
+
+        for (let i = 0; i < board.length; i++) {
+            if (board[i] === 'x' && !xPattern.includes(i)) {
+                xPattern.push(i);
+                xPattern.sort();
+            } else if (board[i] === 'o' && !oPattern.includes(i)) {
+                oPattern.push(i)
+                oPattern.sort();
+            };
+        };
+
+        for (let i = 0; i < winningPattern.length; i++) {
+            const pattern = winningPattern[i];
+            if (pattern.every((num) => xPattern.includes(num))) {
+                winner = 'x';
+                break;
+            } else if (pattern.every((num) => oPattern.includes(num))) {
+                winner = 'o';
+                break;
+            };
+        };
+
+        return winner;
+    };
+
+    return {moveComputer, checkBoard};
+})();
+
+// Function to check winner
+function checkWinner() {
+    // Check for winner
+    const winner = gameController.checkBoard();
+
+    if (winner) {
+        const winnerName = winner === inputRecorder.getPlayerSign() ?
+            inputRecorder.getPlayerName() :
+            'Computer';
+
+        return winnerName;
+    };
+};
