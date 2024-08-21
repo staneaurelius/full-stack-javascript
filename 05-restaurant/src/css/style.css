@@ -17,17 +17,20 @@ body {
 }
 
 /* Header */
+h2 {
+    font-size: 1.875rem;
+}
+
 header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    padding: 0 128px;
+    padding: 0 160px;
 }
 
 header h2 {
     font-family: "Playfair Display", Georgia, serif;
-    font-size: 1.875rem;
-    margin: 32px 0;
+    margin: 32px 0 48px;
 }
 
 .dark-pink {
@@ -48,6 +51,10 @@ nav button {
     cursor: pointer;
 }
 
+nav button:hover {
+    color: var(--dark-pink);
+}
+
 nav button::after {
     content: '';
     height: 0.25rem;
@@ -64,9 +71,84 @@ nav button::after {
     background-color: var(--dark-pink);
 }
 
+/* Home Styling */
+.hero {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    padding: 0 160px;
+    align-items: center;
+    margin-bottom: 48px;
+}
+
+.texts h1, .texts p {
+    line-height: 1.5;
+}
+
+.texts p {
+    color: var(--gray);
+    margin: 32px 0;
+}
+
+.hero img {
+    justify-self: right;
+    width: 75%;
+    height: auto;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 32px;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.action-buttons button {
+    padding: 12px 36px;
+    border-radius: 32px;
+    cursor: pointer;
+}
+
+.action-buttons button:hover {
+    filter: brightness(0.9);
+}
+
+.primary-btn {
+    background-color: var(--pink);
+    color: var(--white);
+    border: none;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--pink);
+    border: 2px solid var(--pink);
+}
+
+.review {
+    background-color: #FFFFFF;
+    padding: 32px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
+
+.review-aspect h2 {
+    color: var(--dark-pink);
+    margin: 0;
+}
+
+.review-aspect p {
+    color: var(--gray);
+    margin: 1rem 0 0;
+}
+
 /* Footer */
 footer {
+    padding: 16px 0;
     text-align: center;
+    font-weight: 550;
 }
 
 footer a {
