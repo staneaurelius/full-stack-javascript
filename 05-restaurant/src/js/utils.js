@@ -1,7 +1,13 @@
 export default function createElement (name, className = null, attr = null, text = null, innerHtml = null) {
     const generatedElement = document.createElement(name);
     if (className) {
-        generatedElement.classList.add(className);  
+        if (typeof(className) === 'string') {
+            generatedElement.classList.add(className);  
+        } else {
+            className.forEach((elementClass) => {
+                generatedElement.classList.add(elementClass);
+            });
+        };
     };
 
     if (attr) {

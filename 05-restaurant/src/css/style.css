@@ -144,6 +144,58 @@ nav button::after {
     margin: 1rem 0 0;
 }
 
+/* About us page */
+.summary {
+    text-align: center;
+    padding: 0 160px;
+    margin-bottom: 48px;
+}
+
+.summary svg {
+    width: 20vh;
+    height: auto;
+    color: var(--dark-pink);
+}
+
+.summary h1 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.875rem;
+    margin: 32px 0 24px;
+}
+
+.summary p {
+    color: var(--gray);
+    line-height: 1.25;
+    margin: 0;
+}
+
+.journey {
+    background-color: #FFFFFF;
+    padding: 32px 160px;
+    text-align: center;
+}
+
+.journey h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.journey p {
+    text-indent: 4rem;
+    text-align: justify;
+    line-height: 1.25;
+    margin: 16px 0;
+}
+
+.journey p:first-of-type {
+    margin-top: 24px;
+}
+
+.journey p:last-of-type {
+    margin-bottom: 24px;
+}
+
 /* Footer */
 footer {
     padding: 16px 0;

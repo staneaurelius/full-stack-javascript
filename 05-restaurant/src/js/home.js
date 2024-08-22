@@ -10,8 +10,8 @@ function generateHeroSection () {
     textContainer.appendChild(createElement('p', null, null, null, 'Discover the Perfect Blend of Tradition and Innovation in<br>Every Bite, Where Every Dish is a Masterpiece<br>Crafted to Delight Your Senses.'));
 
     const actionButtons = createElement('div', 'action-buttons');
-    actionButtons.appendChild(createElement('button', 'primary-btn', {'type' : 'button'}, 'Order Now'));
-    actionButtons.appendChild(createElement('button', 'secondary-btn', {'type' : 'button'}, 'About Us'));
+    actionButtons.appendChild(createElement('button', ['primary-btn', 'menu-btn'], {'type' : 'button'}, 'Order Now'));
+    actionButtons.appendChild(createElement('button', ['secondary-btn', 'about-btn'], {'type' : 'button'}, 'About Us'));
 
     textContainer.appendChild(actionButtons);
 
