@@ -2,6 +2,7 @@ import '../css/normalize.css';
 import '../css/style.css';
 import { generateHeroSection, generateReviewSection } from './home';
 import { generateSummarySection, generateJourneySection } from './about';
+import { generateMenuHeading, generateCardGrid } from './menu';
 
 const contentInitator = (function () {
     const contentContainer = document.querySelector('#content');
@@ -25,6 +26,17 @@ const contentChanger = (function () {
 
         removeActiveClass(navButtons, 'active');
         homeButton.classList.add('active');
+    });
+
+    // Menu button
+    const menuButton = document.querySelector('.menu-btn');
+    menuButton.addEventListener('click', (e) => {
+        clearContainer(contentContainer);
+        contentContainer.appendChild(generateMenuHeading());
+        contentContainer.appendChild(generateCardGrid());
+
+        removeActiveClass(navButtons, 'active');
+        menuButton.classList.add('active');
     });
 
     // About us button
