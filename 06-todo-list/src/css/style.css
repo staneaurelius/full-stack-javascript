@@ -53,12 +53,12 @@ h1, h2 {
 
 /* --- Sidebar Header --- */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--sidebar-divider);
 }
 
 header h1 {
+    text-align: center;
     font-size: 1.875rem;
 }
 
@@ -72,7 +72,7 @@ header svg {
     font-size: 0.8rem;
 }
 
-#default-projects {
+.projects-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -110,8 +110,7 @@ header svg {
 /* --- Sidebar Footer --- */
 footer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
     border-top: 1px solid var(--sidebar-divider);
     padding-top: 16px;
 }
@@ -125,5 +124,5 @@ footer svg {
     display: flex;
     align-items: center;
     padding: 8px 16px;
-    gap: 16px;
+    gap: 8px;
 }
