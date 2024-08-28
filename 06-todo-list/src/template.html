@@ -48,11 +48,39 @@
         </div>
         <div id="content">
             <header class="content-header">
-                <h2>All Tasks</h2>
-                <h2>5</h2>
+                <h2 id="project-title">All Tasks</h2>
+                <h2 id="task-counter">5</h2>
             </header>
             <button type="button" id="add-task">&plus; Add New Task</button>
             <div id="tasks"></div>
+        </div>
+        <div id="modal">
+            <h3>Task:</h3>
+            <form action="">
+                <input type="text" id="task-name" placeholder="Name">
+                <textarea rows="10" id="description" placeholder="Description"></textarea>
+                <div>
+                    <label for="project-list">Project:</label>
+                    <select id="project-list">
+                        <option value="All Tasks">All Tasks</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="due-date">Due Date:</label>
+                    <input type="date" id="due-date" value="2024-01-01">
+                </div>
+                <div>
+                    <label for="project-status">Project:</label>
+                    <select id="project-status">
+                        <option value="false">Unfinished</option>
+                        <option value="true">Finished</option>
+                    </select>
+                </div>
+            </form>
+            <div id="form-buttons">
+                <button type="button">Cancel</button>
+                <button type="submit" id="submit-form">Save Changes</button>
+            </div>
         </div>
     </body>
 </html>

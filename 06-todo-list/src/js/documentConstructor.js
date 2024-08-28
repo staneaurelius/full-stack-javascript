@@ -11,13 +11,16 @@ function createArrowSvg () {
     return arrowSvg;
 };
 
-function createTaskItemContainer (taskName, dueDate) {
+function createTaskItemContainer (taskName, dueDate, isFinished) {
     const taskItemContainer = document.createElement('div');
     taskItemContainer.classList.add('task-item');
 
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
-    checkbox.setAttribute('id', taskName.toLowerCase().replace(' ', '-'));
+    checkbox.setAttribute('id', taskName.toLowerCase().replaceAll(' ', '-'));
+    if (isFinished) {
+        checkbox.setAttribute('checked', '');
+    };
 
     const taskDetails = document.createElement('div');
     taskDetails.classList.add('task-details');

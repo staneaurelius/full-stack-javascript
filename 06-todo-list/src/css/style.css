@@ -16,7 +16,7 @@ html {
 
 body {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 2fr 5fr 3fr;
     height: 100vh;
     padding: 16px;
 }
@@ -199,4 +199,72 @@ h1, h2, h3, p {
 
 .task-details p {
     font-size: 0.8rem;
+}
+
+/* Modal */
+#modal {
+    background-color: var(--sidebar-bg);
+    height: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#modal form {
+    flex: 1;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#modal input:focus, #modal textarea:focus, #due-date:focus, select:focus {
+    outline-color: var(--sidebar-text-highlight);
+}
+
+#task-name, #description, #due-date, select {
+    background-color: transparent;
+    border: 0.5px solid var(--sidebar-divider);
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+
+#modal label {
+    font-weight: 700;
+}
+
+form div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+}
+
+#form-buttons button {
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+}
+
+#form-buttons button:hover {
+    filter: brightness(0.9);
+}
+
+#form-buttons button:first-child {
+    background-color: var(--sidebar-bg);
+    border: 1px solid var(--sidebar-divider);
+}
+
+#submit-form {
+    background-color: #FFD43A;
+    border: none;
 }

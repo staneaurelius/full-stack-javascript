@@ -1,8 +1,9 @@
-import { format, parseISO, compareAsc } from "date-fns";
+import { format, parseISO, subDays, compareAsc } from "date-fns";
 
 // For generating task items
 const taskItem = function (taskName, taskDesc, taskDue, taskProject, finished) {
-    let name = taskName,
+    let id = taskName.toLowerCase().replaceAll(' ', '-'),
+        name = taskName,
         description = taskDesc,
         project = ['All Tasks'],
         dueDate;
@@ -15,13 +16,20 @@ const taskItem = function (taskName, taskDesc, taskDue, taskProject, finished) {
     };
 
     let isFinished = finished ? true : false;
-    return { name, description, 'dueDate' : format(dueDate, 'yyyy-MM-dd'), project, isFinished };
+
+    return { id, name, description, 'dueDate' : format(dueDate, 'yyyy-MM-dd'), project, isFinished };
 };
 
 // For generating project items
 const project = function (projectName) {
     let name = projectName;
     const taskList = [];
+
+    const getTask = function (taskId) {
+        const taskIds = taskList.map((task) => task.id);
+        const targetId = taskIds.indexOf(taskId);
+        return taskList[targetId];
+    };
 
     const addTask = function (task) {
         taskList.push(task);
@@ -32,7 +40,7 @@ const project = function (projectName) {
         taskIndex.splice(taskIndex, 1);
     };
 
-    return { name, taskList, addTask, removeTask };
+    return { name, taskList, getTask, addTask, removeTask };
 };
 
 // Managing projects
@@ -40,7 +48,10 @@ const projectManager = (function () {
     // Initiate default projects and add a task
     const allTasksProject = project('All Tasks');
     allTasksProject.addTask(
-        taskItem('Research Content Ideas', 'Conduct some researchs regarding how to create a website using HTML, CSS, and JavaScript in the most effective an efficient way.', '2024-08-28', null, null)
+        taskItem('Learn Website Development', 'Learn how to create a website using HTML, CSS, and JavaScript in the most effective an efficient way.', format(new Date(), 'yyyy-MM-dd'), null, null)
+    );
+    allTasksProject.addTask(
+        taskItem('Research CSS Frameworks', 'Conduct some researchs regarding different CSS frameworks, as well as how to utilize them in a project to produce the best styling for my website', format(subDays(new Date(), 3), 'yyyy-MM-dd'), null, true)
     );
 
     const projectLists = [
