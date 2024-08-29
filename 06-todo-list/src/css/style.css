@@ -264,7 +264,7 @@ form div {
     border: 1px solid var(--sidebar-divider);
 }
 
-#submit-form {
+button[type="submit"] {
     background-color: #FFD43A;
     border: none;
 }

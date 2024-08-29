@@ -21,18 +21,16 @@ function createArrowSvg () {
     return arrowSvg;
 };
 
-function addTaskListener (container, taskItem) {
+function addTaskListener (container, taskItem, projectName) {
     container.addEventListener('click', (e) => {
-        if (e.target.tagName != 'INPUT') {
-            updateModal(taskItem);
-        } else {
+        if (e.target.tagName == 'INPUT') {
             taskItem.isFinished = taskItem.isFinished ? false : true;
-            updateModal(taskItem);
         };
+        updateModal(taskItem, projectName);
     });
 };
 
-function createTaskItemContainer (taskItem) {
+function createTaskItemContainer (taskItem, projectName) {
     // Create container
     const taskItemContainer = document.createElement('div');
     taskItemContainer.classList.add('task-item');
@@ -63,7 +61,7 @@ function createTaskItemContainer (taskItem) {
     taskItemContainer.appendChild(arrowSvg);
 
     // Add listener and return
-    addTaskListener(taskItemContainer, taskItem);
+    addTaskListener(taskItemContainer, taskItem, projectName);
     return taskItemContainer;
 };
 
@@ -73,4 +71,19 @@ function updateHeader (titleContainer, counterContainer, projectName) {
     counterContainer.textContent = taskCount;
 };
 
-export { clearDisplay, createTaskItemContainer, updateHeader };
+function displayTasks (projectName) {
+    const displayContainer = document.querySelector('#tasks'),
+        tasksTitle = document.querySelector('#project-title'),
+        tasksCounter = document.querySelector('#task-counter'),
+        projectTasks = taskManager.getTasksByProject(projectName);
+
+    for (let i = 0; i < projectTasks.length; i++) {
+        const currentTask = projectTasks[i];
+        const taskContainer = createTaskItemContainer(currentTask, projectName);
+        displayContainer.appendChild(taskContainer);
+    };
+
+    updateHeader(tasksTitle, tasksCounter, projectName)
+};
+
+export { clearDisplay, displayTasks };
