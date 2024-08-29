@@ -1,3 +1,13 @@
+import { updateModal } from "./modalHandler";
+import { taskManager } from "./todoTasks";
+
+function clearDisplay () {
+    const taskContainer = document.querySelector('#tasks');
+    while (taskContainer.firstChild) {
+        taskContainer.removeChild(taskContainer.firstChild);
+    };
+};
+
 function createArrowSvg () {
     const arrowSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     arrowSvg.setAttribute('width', '16px');
@@ -11,14 +21,26 @@ function createArrowSvg () {
     return arrowSvg;
 };
 
-function createTaskItemContainer (taskName, dueDate, isFinished) {
+function addTaskListener (container, taskItem) {
+    container.addEventListener('click', (e) => {
+        if (e.target.tagName != 'INPUT') {
+            updateModal(taskItem);
+        } else {
+            taskItem.isFinished = taskItem.isFinished ? false : true;
+            updateModal(taskItem);
+        };
+    });
+};
+
+function createTaskItemContainer (taskItem) {
+    // Create container
     const taskItemContainer = document.createElement('div');
     taskItemContainer.classList.add('task-item');
 
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
-    checkbox.setAttribute('id', taskName.toLowerCase().replaceAll(' ', '-'));
-    if (isFinished) {
+    checkbox.setAttribute('id', taskItem.generateSlug());
+    if (taskItem.isFinished) {
         checkbox.setAttribute('checked', '');
     };
 
@@ -26,10 +48,10 @@ function createTaskItemContainer (taskName, dueDate, isFinished) {
     taskDetails.classList.add('task-details');
 
     const detailHeadings = document.createElement('h3');
-    detailHeadings.textContent = taskName;
+    detailHeadings.textContent = taskItem.name;
 
     const detailDue = document.createElement('p');
-    detailDue.textContent = `Due: ${dueDate}`;
+    detailDue.textContent = `Due: ${taskItem.dueDate}`;
 
     taskDetails.appendChild(detailHeadings);
     taskDetails.appendChild(detailDue);
@@ -40,7 +62,15 @@ function createTaskItemContainer (taskName, dueDate, isFinished) {
     taskItemContainer.appendChild(taskDetails);
     taskItemContainer.appendChild(arrowSvg);
 
+    // Add listener and return
+    addTaskListener(taskItemContainer, taskItem);
     return taskItemContainer;
 };
 
-export { createTaskItemContainer };
+function updateHeader (titleContainer, counterContainer, projectName) {
+    const taskCount = taskManager.getTasksByProject(projectName).length;
+    titleContainer.textContent = projectName;
+    counterContainer.textContent = taskCount;
+};
+
+export { clearDisplay, createTaskItemContainer, updateHeader };
