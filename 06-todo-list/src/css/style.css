@@ -155,12 +155,17 @@ h1, h2, h3, p {
 }
 
 #add-task {
-    background-color: transparent;
+    background-color: #FFFFFF;
     color: var(--gray);
     padding: 8px 16px;
     border: 1px solid var(--sidebar-divider);
     border-radius: 8px;
     text-align: left;
+    cursor: pointer;
+}
+
+#add-task:hover {
+    filter: brightness(0.9);
 }
 
 .task-item {

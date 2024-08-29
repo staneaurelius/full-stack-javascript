@@ -1,5 +1,6 @@
 import { updateModal } from "./modalHandler";
 import { taskManager } from "./todoTasks";
+import { format } from "date-fns";
 
 function clearDisplay () {
     const taskContainer = document.querySelector('#tasks');
@@ -65,8 +66,8 @@ function createTaskItemContainer (taskItem, projectName) {
     return taskItemContainer;
 };
 
-function updateHeader (titleContainer, counterContainer, projectName) {
-    const taskCount = taskManager.getTasksByProject(projectName).length;
+function updateHeader (titleContainer, counterContainer, projectName, displayedTasks) {
+    const taskCount = displayedTasks.length;
     titleContainer.textContent = projectName;
     counterContainer.textContent = taskCount;
 };
@@ -74,16 +75,26 @@ function updateHeader (titleContainer, counterContainer, projectName) {
 function displayTasks (projectName) {
     const displayContainer = document.querySelector('#tasks'),
         tasksTitle = document.querySelector('#project-title'),
-        tasksCounter = document.querySelector('#task-counter'),
-        projectTasks = taskManager.getTasksByProject(projectName);
+        tasksCounter = document.querySelector('#task-counter');
 
-    for (let i = 0; i < projectTasks.length; i++) {
-        const currentTask = projectTasks[i];
+    let displayedTasks;
+    if (projectName == 'Today') {
+        const projectTasks = taskManager.getTasksByProject('All Tasks');
+        displayedTasks = projectTasks.filter((task) => {
+            const today = format(new Date(), 'yyyy-MM-dd');
+            return task.dueDate == today;
+        });
+    } else {
+        displayedTasks = taskManager.getTasksByProject(projectName);
+    };
+
+    for (let i = 0; i < displayedTasks.length; i++) {
+        const currentTask = displayedTasks[i];
         const taskContainer = createTaskItemContainer(currentTask, projectName);
         displayContainer.appendChild(taskContainer);
     };
 
-    updateHeader(tasksTitle, tasksCounter, projectName)
+    updateHeader(tasksTitle, tasksCounter, projectName, displayedTasks)
 };
 
 export { clearDisplay, displayTasks };

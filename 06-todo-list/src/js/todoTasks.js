@@ -12,7 +12,7 @@ const taskItem = function (taskName, taskDesc, taskDue, taskProject, finished) {
 
     dueDate = parseISO(taskDue);
 
-    if (taskProject) {
+    if (taskProject && taskProject != 'All Tasks') {
         project.push(taskProject);
     };
 
@@ -50,4 +50,4 @@ const taskManager = (function () {
     return { getTasksByProject, addTask, removeTask };
 })();
 
-export { taskManager };
+export { taskItem, taskManager };
