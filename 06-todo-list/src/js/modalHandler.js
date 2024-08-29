@@ -8,6 +8,15 @@ function deleteTask (taskItem, projectName) {
     clearModal();
 };
 
+function createProjectOption (projectName) {
+    const selectContainer = document.querySelector('#project-list'),
+        newOption = document.createElement('option');
+    newOption.setAttribute('value', projectName);
+    newOption.textContent = projectName;
+
+    selectContainer.appendChild(newOption);
+};
+
 function saveTask (taskItem, projectName) {
     const displayName = document.querySelector('#task-name').value,
         displayDesc = document.querySelector('#description').value,
@@ -69,12 +78,20 @@ function updateModal (taskItem, projectName) {
     const displayName = document.querySelector('#task-name'),
         displayDesc = document.querySelector('#description'),
         displayDue = document.querySelector('#due-date'),
+        displayProject = document.querySelector('#project-list'),
         displayUnfinished = document.querySelector('option[value="false"]'),
         displayFinished = document.querySelector('option[value="true"]');
 
     displayName.value = taskItem.name;
     displayDesc.value = taskItem.description;
     displayDue.value = taskItem.dueDate;
+    if (taskItem.project.length > 1) {
+        const newProjectName = taskItem.project[1];
+        if (!document.querySelector(`option[value="${newProjectName}"]`)) {
+            createProjectOption(taskItem.project[1]);
+        };
+        displayProject.value = taskItem.project[1];
+    };
     if (taskItem.isFinished) {
         displayUnfinished.removeAttribute('selected');
         displayFinished.setAttribute('selected', '');
