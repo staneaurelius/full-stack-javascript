@@ -3,7 +3,7 @@
   --light-gray: #e5e5ea;
   --medium-gray: #d1d1d6;
   --dark-gray: #8e8e93;
-  --red: #FF3B30;
+  --red: #ff3b30;
 }
 
 html {
@@ -13,9 +13,9 @@ html {
 }
 
 .flex-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 body {
@@ -56,66 +56,105 @@ button:hover {
 }
 
 .dropdown {
-    position: relative;
+  position: relative;
 }
 
 .dropdown-items {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 ul {
-    list-style-type: none;
-    background-color: #FFFFFF;
-    padding: 0;
-    margin: 0;
-    border-radius: 0 0 8px 8px;
+  list-style-type: none;
+  background-color: #ffffff;
+  padding: 0;
+  margin: 0;
+  border-radius: 0 0 8px 8px;
 }
 
 li {
-    font-style: italic;
-    padding: 8px 24px;
-    cursor: pointer;
+  font-style: italic;
+  padding: 8px 24px;
+  cursor: pointer;
 }
 
 li:hover {
-    background-color: var(--light-gray);
-    border-radius: 8px;
+  background-color: var(--light-gray);
+  border-radius: 8px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 /* Content */
 #carousel {
-    flex: 1;
-    justify-content: center;
-    gap: 16px;
+  flex: 1;
+  justify-content: center;
+  gap: 16px;
 }
 
 .flex-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
 
 img {
-    background: url('../img/background.jpg');
-    object-fit: contain;
-    padding: 32px;
-    border: 1px solid var(--dark-gray);
-    border-radius: 16px;
+  width: 600px;
+  height: 250px;
+  background: url("../img/background.jpg");
+  background-size: contain;
+  object-fit: contain;
+  padding: 32px;
+  border: 1px solid var(--dark-gray);
+  border-radius: 16px;
+}
+
+.img-focus {
+  position: relative;
+}
+
+.img-prev,
+.img-next {
+  width: 500px;
+  height: 208px;
+  position: absolute;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.img-prev {
+  right: 60%;
+  transform: translateY(21px);
+}
+
+.img-next {
+  left: 60%;
+  transform: translateY(21px);
 }
 
 svg {
-    color: var(--medium-gray);
+  color: var(--medium-gray);
+  width: 24px;
+  height: 24px;
+}
+
+svg:not(.active):hover {
+  color: var(--red);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.circle-btn {
+  width: 8px;
+  height: 8px;
 }
 
 .active {
-    color: var(--red);
+  color: var(--red);
 }
 
 /* Footer */
