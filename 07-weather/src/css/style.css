@@ -1,0 +1,151 @@
+:root {
+  --midnight-blue: #191970;
+  --deep-blue: #4682B4;
+  --sky-blue: #87CEEB;
+  --sunset-orange: #FFA07A;
+  --cloud-white: #F0F8FF;
+}
+
+html {
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+body {
+  box-sizing: border-box;
+  height: 100vh;
+  color: var(--cloud-white);
+  background: linear-gradient(to bottom, var(--deep-blue), var(--sky-blue));
+  padding: 32px 64px;
+}
+
+h1, h2, p, a {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.125em;
+}
+
+h2 {
+  font-size: 1.875em;
+}
+
+p, a {
+  font-size: 1em;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.secondary {
+  color: var(--midnight-blue);
+}
+
+/* Header */
+header {
+  justify-content: space-between;
+}
+
+.left-header, .right-header {
+  gap: 32px;
+}
+
+.left-header a {
+  color: var(--cloud-white);
+  text-decoration: none;
+}
+
+#logo {
+  gap: 8px;
+}
+
+.unit-buttons {
+  gap: 8px;
+  background-color: rgba(25, 25, 112, 0.5);
+  border-radius: 16px;
+}
+
+.unit-btn {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: none;
+  color: var(--cloud-white);
+  font-weight: 600;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.active {
+  background-color: var(--midnight-blue);
+}
+
+#search-bar {
+  padding: 8px 16px;
+  border-radius: 16px;
+  background-color: var(--cloud-white);
+  border: none;
+  outline: none;
+  width: 30%;
+}
+
+/* Overview */
+#overview {
+  font-size: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 32px;
+  margin-top: 64px;
+  padding: 0 64px;
+}
+
+.today-overview {
+  gap: 16px;
+}
+
+.today-overview svg {
+  width: 5em;
+  height: 5em;
+}
+
+.today-temp {
+  justify-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.today-temp h1, .today-temp h2 {
+  font-weight: normal;
+}
+
+.today-temp h1 {
+  font-size: 4.25em;
+}
+
+.today-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+}
+
+.detail-card {
+  gap: 8px;
+  text-align: right;
+}
+
+.detail-card p:first-child {
+  font-style: italic;
+}
+
+.detail-card p:last-child {
+  font-size: 1.25em;
+}
