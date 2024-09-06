@@ -61,6 +61,12 @@ header {
 .left-header a {
   color: var(--cloud-white);
   text-decoration: none;
+  padding-bottom: 4px;
+}
+
+a.active-nav {
+  color: var(--midnight-blue);
+  border-bottom: 2px solid var(--midnight-blue);
 }
 
 #logo {
@@ -83,17 +89,22 @@ header {
   cursor: pointer;
 }
 
-.active {
+.active-btn {
   background-color: var(--midnight-blue);
 }
 
 #search-bar {
+  color: var(--midnight-blue);
   padding: 8px 16px;
   border-radius: 16px;
   background-color: var(--cloud-white);
   border: none;
   outline: none;
   width: 30%;
+}
+
+::placeholder {
+  font-style: italic;
 }
 
 /* Overview */
