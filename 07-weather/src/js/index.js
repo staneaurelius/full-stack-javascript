@@ -27,6 +27,18 @@ const tempUnitHandler = (function () {
     });
 })();
 
+const searchbarHandler = (function () {
+    const searchBar = document.querySelector('#search-bar');
+
+    searchBar.addEventListener('search', (e) => {
+        let searchValue = searchBar.value;
+        if (searchBar.value.includes(' ')) {
+            searchValue = searchValue.replace(' ', '%20');
+        };
+        displayUpdater.updateDisplay(searchValue);
+    });
+})();
+
 const mainDisplayHandler = (function () {
     const location = document.querySelector('#location'),
         date = document.querySelector('#current-date'),
@@ -77,6 +89,10 @@ const historyDisplayHandler = (function () {
     const historyCards = document.querySelectorAll('.history-card');
 
     const generateCardComponent = function (card, date, pastData) {
+        while (card.firstChild) {
+            card.removeChild(card.lastChild);
+        };
+
         const cardDate = document.createElement('h3'),
             cardImg = document.createElement('img'),
             cardTemp = document.createElement('p');
@@ -121,29 +137,34 @@ const historyDisplayHandler = (function () {
     return { updateHistoryCards, convertToCelcius, convertToFahrenheit }
 })();
 
-const displayInitializer = (function () {
-    let today = new Date(),
-        currentLocation = 'Jakarta';
+const displayUpdater = (function () {
+    const today = new Date();
     
-    // Initialize weather data
-    let weatherInfo = getWeatherInfo(currentLocation);
-    weatherInfo.then(response => {
-        const extractedData = [response.resolvedAddress, today];
-        mainDisplayHandler.updateLocationDate(...extractedData);
-    });
+    const updateDisplay = function (location) {
+        const weatherInfo = getWeatherInfo(location);
+        weatherInfo.then(response => {
+            const extractedData = [response.resolvedAddress, today];
+            mainDisplayHandler.updateLocationDate(...extractedData);
+        });
 
-    let todayWeather = getTodayWeather(weatherInfo);
-    todayWeather.then(data => {
-        const extractedData = [
-            data.icon, data.conditions, data.temp, data.tempmin, data.tempmax,
-            data.feelslike, data.windspeed, data.uvindex, data.humidity
-        ];
+        const todayWeather = getTodayWeather(weatherInfo);
+        todayWeather.then(data => {
+            const extractedData = [
+                data.icon, data.conditions, data.temp, data.tempmin, data.tempmax,
+                data.feelslike, data.windspeed, data.uvindex, data.humidity
+            ];
 
-        mainDisplayHandler.updateMainNumbers(...extractedData);
-    });
+            mainDisplayHandler.updateMainNumbers(...extractedData);
+        });
 
-    let pastWeather = getPastWeather(weatherInfo);
-    pastWeather.then(data => {
-        historyDisplayHandler.updateHistoryCards(today, data);
-    });
+        const pastWeather = getPastWeather(weatherInfo);
+        pastWeather.then(data => {
+            historyDisplayHandler.updateHistoryCards(today, data);
+        });
+    };
+
+    // For initializing display
+    updateDisplay('Jakarta');
+
+    return { updateDisplay };
 })();
