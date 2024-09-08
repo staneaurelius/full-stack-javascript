@@ -4,7 +4,7 @@ This project is part of **The Odin Project's** JavaScript course of the Full Sta
 
 - *HTML structure* for creating the template of the web page;
 - *CSS styling* for creating the web layout, as well as adding styling to the web pages;
-- *JavaScript* for fetching data and adding functionality to the web page
+- *JavaScript* for creating asynchronous function for fetching data and adding functionality to the web page
 
 > *This project requires [Visual Crossing](https://www.visualcrossing.com/) API Key provided to src/js/keyGen.js in order to work.*
 
