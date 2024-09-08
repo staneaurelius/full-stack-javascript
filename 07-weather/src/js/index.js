@@ -1,8 +1,8 @@
 import '../css/normalize.css';
 import '../css/style.css';
 import { fahrenheitToCelcius, celciusToFahrenheit, weatherIcons } from './utils';
-import { getWeatherInfo, getTodayWeather } from './apiCall';
-import { format } from 'date-fns';
+import { getWeatherInfo, getTodayWeather, getPastWeather } from './apiCall';
+import { format, addDays } from 'date-fns';
 
 const tempUnitHandler = (function () {
     const celciusButton = document.querySelector('#celcius'),
@@ -13,6 +13,7 @@ const tempUnitHandler = (function () {
             fahrenheitButton.classList.toggle('active-btn');
             celciusButton.classList.toggle('active-btn');
             mainDisplayHandler.convertToCelcius();
+            historyDisplayHandler.convertToCelcius();
         };
     });
 
@@ -21,6 +22,7 @@ const tempUnitHandler = (function () {
             celciusButton.classList.toggle('active-btn');
             fahrenheitButton.classList.toggle('active-btn');
             mainDisplayHandler.convertToFahrenheit();
+            historyDisplayHandler.convertToFahrenheit();
         };
     });
 })();
@@ -40,7 +42,7 @@ const mainDisplayHandler = (function () {
 
     const updateLocationDate = function (locationData, currentDate) {
         location.textContent = locationData;
-        date.textContent = currentDate;
+        date.textContent = format(currentDate, 'MMMM dd, yyyy');
     };
 
     const updateMainNumbers = function (icon, weatherDesc, tempData, minTempData, maxTempData, feelsLikeData, windData, uvData, humidityData) {
@@ -71,8 +73,56 @@ const mainDisplayHandler = (function () {
     return { updateLocationDate, updateMainNumbers, convertToCelcius, convertToFahrenheit };
 })();
 
+const historyDisplayHandler = (function () {
+    const historyCards = document.querySelectorAll('.history-card');
+
+    const generateCardComponent = function (card, date, pastData) {
+        const cardDate = document.createElement('h3'),
+            cardImg = document.createElement('img'),
+            cardTemp = document.createElement('p');
+
+        cardDate.textContent = date;
+        cardImg.src = weatherIcons[pastData.icon];
+        cardTemp.textContent = pastData.temp;
+
+        card.appendChild(cardDate);
+        card.appendChild(cardImg);
+        card.appendChild(cardTemp);
+    };
+
+    const updateHistoryCards = function (startDate, dataArray) {
+        for (let i = 0; i < dataArray.length; i++) {
+            const updatedCard = historyCards[i],
+                cardDate = format(addDays(startDate, -(i+1)), 'MMM dd, yyyy'),
+                inputData = dataArray[i];
+
+            generateCardComponent(updatedCard, cardDate, inputData);
+        };
+    };
+
+    const convertToCelcius = function () {
+        const cardTemps = document.querySelectorAll('.history-card');
+
+        cardTemps.forEach(card => {
+            const cardTemp = card.lastChild;
+            cardTemp.textContent = fahrenheitToCelcius(cardTemp.textContent);
+        });
+    };
+
+    const convertToFahrenheit = function () {
+        const cardTemps = document.querySelectorAll('.history-card');
+
+        cardTemps.forEach(card => {
+            const cardTemp = card.lastChild;
+            cardTemp.textContent = celciusToFahrenheit(cardTemp.textContent);
+        });
+    };
+
+    return { updateHistoryCards, convertToCelcius, convertToFahrenheit }
+})();
+
 const displayInitializer = (function () {
-    let today = format(new Date(), 'MMMM dd, yyyy'),
+    let today = new Date(),
         currentLocation = 'Jakarta';
     
     // Initialize weather data
@@ -90,5 +140,10 @@ const displayInitializer = (function () {
         ];
 
         mainDisplayHandler.updateMainNumbers(...extractedData);
+    });
+
+    let pastWeather = getPastWeather(weatherInfo);
+    pastWeather.then(data => {
+        historyDisplayHandler.updateHistoryCards(today, data);
     });
 })();

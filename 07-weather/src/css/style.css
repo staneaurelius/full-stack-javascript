@@ -19,7 +19,7 @@ body {
   padding: 32px 64px;
 }
 
-h1, h2, p, a {
+h1, h2, h3, p, a {
   margin: 0;
 }
 
@@ -159,4 +159,31 @@ a.active-nav {
 
 .detail-card p:last-child {
   font-size: 1.25em;
+}
+
+/* History */
+#history {
+  margin-top: 64px;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}
+
+.history-card {
+  background-color: var(--deep-blue);
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.history-card img {
+  object-fit: contain;
+  width: 64px;
+  height: 64px;
+}
+
+.history-card > p:last-child::after {
+  content: '°';
 }
