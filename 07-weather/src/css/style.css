@@ -12,11 +12,13 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   height: 100vh;
   color: var(--cloud-white);
   background: linear-gradient(to bottom, var(--deep-blue), var(--sky-blue));
-  padding: 32px 64px;
+  padding: 32px 0 0;
 }
 
 h1, h2, h3, p, a {
@@ -51,6 +53,7 @@ p, a {
 
 /* Header */
 header {
+  padding: 0 64px;
   justify-content: space-between;
 }
 
@@ -114,7 +117,7 @@ a.active-nav {
   grid-template-columns: repeat(3, 1fr);
   column-gap: 32px;
   margin-top: 64px;
-  padding: 0 64px;
+  padding: 0 128px;
 }
 
 .today-overview {
@@ -163,7 +166,9 @@ a.active-nav {
 
 /* History */
 #history {
-  margin-top: 64px;
+  flex: 1;
+  padding: 0 64px;
+  margin: 32px 0 32px;
   justify-content: center;
   align-items: center;
   gap: 48px;
@@ -186,4 +191,16 @@ a.active-nav {
 
 .history-card > p:last-child::after {
   content: '°';
+}
+
+/* Footer */
+footer {
+  background-color: var(--deep-blue);
+  padding: 16px;
+  text-align: center;
+}
+
+footer a {
+  color: var(--cloud-white);
+  text-decoration: none;
 }
