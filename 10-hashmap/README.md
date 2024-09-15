@@ -4,7 +4,7 @@ This project is part of **The Odin Project's** JavaScript course of the Full Sta
 
 ## LinkedList Factory Function
 
-The `LinkedList` factory function can be used to create [Linked List](https://en.wikipedia.org/wiki/Linked_list#:~:text=In%20computer%20science%2C%20a%20linked,which%20together%20represent%20a%20sequence.) object for avoiding collisions in the HashMap. This factory function is similar to the one mentioned in my another (Linked List Project)[https://github.com/staneaurelius/full-stack-javascript/tree/main/09-linked-lists], with some slight modifications to accomodate `key` attribute in its Nodes.
+The `LinkedList` factory function can be used to create [Linked List](https://en.wikipedia.org/wiki/Linked_list#:~:text=In%20computer%20science%2C%20a%20linked,which%20together%20represent%20a%20sequence.) object for avoiding collisions in the HashMap. This factory function is similar to the one mentioned in my another [Linked List Project](https://github.com/staneaurelius/full-stack-javascript/tree/main/09-linked-lists), with some slight modifications to accomodate `key` attribute in its Nodes.
 
 The `LinkedList` object has the following built-in functions:
 
