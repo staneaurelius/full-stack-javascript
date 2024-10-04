@@ -20,11 +20,22 @@ h1, h2, figcaption {
 
 /* Header */
 header {
-  background-image: linear-gradient(170deg, var(--turqoise) 64%, rgba(0, 0, 0, 0.3) 64%, rgba(255, 255, 255, 0) 64.5%);
+  position: relative;
   padding: 48px 72px;
   display: flex;
   justify-content: center;
   align-items: center;
+  filter: drop-shadow(0 2px 8px var(--light-gray));
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--turqoise);
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
 }
 
 figure {
@@ -34,10 +45,11 @@ figure {
 
 figure img {
   box-shadow: 2px 2px 8px 0 var(--light-gray);
+  width: 400px;
+  object-fit: cover;
 }
 
 figcaption {
-  color: var(--white);
   font-weight: 600;
   font-size: 2.5rem;
   position: absolute;
@@ -66,4 +78,46 @@ figcaption {
   justify-content: end;
   align-items: center;
   gap: 16px;
+}
+
+/* Projects */
+.projects {
+  padding: 72px;
+}
+
+.projects h1 {
+  margin: 0 0 24px;
+}
+
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 48px 36px;
+}
+
+.card {
+  box-shadow: 2px 2px 8px 0 var(--light-gray);
+  padding-bottom: 72px;
+}
+
+.card > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.project-headings, .card p {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.project-headings {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.project-headings h2 {
+  flex-grow: 1;
+  margin: 16px 0;
 }
