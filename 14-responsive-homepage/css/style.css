@@ -18,6 +18,11 @@ h1, h2, figcaption {
   letter-spacing: 0.1ex;
 }
 
+a img, .phone img, .mail img {
+  width: 1.5rem;
+  height: auto;
+}
+
 /* Header */
 header {
   position: relative;
@@ -38,18 +43,20 @@ header::before {
   clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
 }
 
-figure {
+header figure {
   margin: 0;
   position: relative;
 }
 
-figure img {
+header figure img {
   box-shadow: 2px 2px 8px 0 var(--light-gray);
   width: 400px;
+  height: 400px;
   object-fit: cover;
 }
 
-figcaption {
+header figcaption {
+  color: var(--white);
   font-weight: 600;
   font-size: 2.5rem;
   position: absolute;
@@ -120,4 +127,69 @@ figcaption {
 .project-headings h2 {
   flex-grow: 1;
   margin: 16px 0;
+}
+
+/* Footer */
+footer {
+  color: var(--white);
+  background-color: var(--turqoise);
+  padding: 48px 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px
+}
+
+.contact-details {
+  align-self: start;
+}
+
+.contact-details h1 {
+  color: var(--white);
+  font-weight: 500;
+  margin: 0 0 24px;
+}
+
+.contact-details > p {
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+
+.contact-details > p:nth-of-type(2) {
+  margin-bottom: 8px;
+}
+
+.phone, .mail {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.phone p, .mail p {
+  margin: 0;
+}
+
+.phone {
+  margin-bottom: 16px;
+}
+
+.mail {
+  margin-bottom: 32px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.icons img {
+  width: 2rem;
+  height: auto;
+}
+
+footer img {
+  width: 600px;
+  height: auto;
+  object-fit: cover;
 }
