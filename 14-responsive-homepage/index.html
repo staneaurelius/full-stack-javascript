@@ -14,7 +14,11 @@
   <main>
     <header>
       <figure>
-        <img src="images/profile/profile-placeholder.jpg" alt="A profile picture of the homepage creator" width="400px">
+        <picture>
+          <source media="(max-width: 767px)" srcset="images/profile/portrait.png" />
+          <source media="(min-width: 768px)" srcset="images/profile/square.png" />
+          <img src="images/profile/square.png" alt="Profile picture of the homepage creator" width="400px"/>
+        </picture>
         <figcaption>Jane Doe</figcaption>
       </figure>
       <section class="about">
@@ -107,7 +111,11 @@
         <a href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg" alt="" width="24px" /></a>
       </div>
     </section>
-    <img src="images/contact/contact-placeholder.jpg" alt="Pictures of contact person" width="600px">
+    <picture>
+      <source media="(max-width: 1023px)" srcset="images/contact/portrait.png" />
+      <source media="(min-width: 1024px)" srcset="images/contact/landscape.png" />
+      <img src="images/contact/landscape.png" alt="Picture of the contact person" width="600px"/>
+    </picture>
   </footer>
 </body>
 </html>

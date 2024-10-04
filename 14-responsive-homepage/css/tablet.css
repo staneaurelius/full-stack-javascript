@@ -26,10 +26,7 @@ a img, .phone img, .mail img {
 /* Header */
 header {
   position: relative;
-  padding: 48px 72px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 48px 32px;
   filter: drop-shadow(0 2px 8px var(--light-gray));
 }
 
@@ -44,6 +41,7 @@ header::before {
 }
 
 header figure {
+  float: left;
   margin: 0;
   position: relative;
 }
@@ -192,66 +190,4 @@ footer img {
   width: 600px;
   height: auto;
   object-fit: cover;
-}
-
-/* Tablet */
-@media only screen and (max-width: 1023px) {
-  header {
-    display: block;
-    padding: 48px 32px;
-  }
-
-  header::before {
-    left: 0;
-    top: 0;
-    clip-path: polygon(0 0, 100% 0, 100% 40%, 0 80%);
-  }
-
-  header figure {
-    float: left;
-    margin-right: 24px;
-    margin-bottom: 16px;
-  }
-
-  header figcaption {
-    width: auto;
-    top: 5%;
-    right: -35%;
-  }
-
-  .about {
-    margin: 136px 40px 0 40px;
-    padding: 72px 36px;
-  }
-
-  .about h1 {
-    text-align: center;
-  }
-
-  /* Projects */
-  .projects {
-    padding: 36px 72px 144px;
-  }
-
-  .project-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 48px 36px;
-  }
-
-  .card {
-    padding-bottom: 60px;
-  }
-
-  /* Footer */
-  .contact-details {
-    align-self: center;
-  }
-
-  footer img {
-    width: 300px;
-    height: 420px;
-    object-fit: cover;
-  }
 }
