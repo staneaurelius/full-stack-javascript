@@ -28,5 +28,6 @@ The homepage design changes based on the user's screen size with the following b
 ## Attribution
 
 - GitHub, LinkedIn, and X (*formerly Twitter*) icons were obtained from [Devicon](https://devicon.dev/)
+- Placeholder card images by [Elementor Developers](https://developers.elementor.com/docs/hooks/placeholder-image/)
 - Placeholder profile and contact pictures were created by [Anna Shvets](https://www.pexels.com/@shvetsa/) in Pexels
 - Phone, mail, and external link icons were designed by [Feather](https://feathericons.com/)
