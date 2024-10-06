@@ -195,7 +195,7 @@ footer img {
 }
 
 /* Tablet */
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
   header {
     display: block;
     padding: 48px 32px;
@@ -253,5 +253,103 @@ footer img {
     width: 300px;
     height: 420px;
     object-fit: cover;
+  }
+}
+
+/* Phone */
+@media only screen and (max-width: 767px) {
+  header {
+    padding: 24px;
+    flex-direction: column;
+    gap: 48px;
+    filter: none;
+  }
+  
+  header::before {
+    clip-path: polygon(0 0, 100% 0, 100% 20%, 0 40%);
+  }
+  
+  header figure img {
+    box-shadow: 0 2px 8px 0 var(--light-gray);
+    width: 300px;
+    height: 500px;
+  }
+  
+  header figcaption {
+    font-size: 3rem;
+    bottom: 5%;
+  }
+  
+  .about {
+    padding: 0;
+    box-shadow: none;
+    background-color: white;
+  }
+  
+  .about h1 {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .about-icons {
+    margin-top: 16px;
+    justify-content: center;
+  }
+  
+  /* Projects */
+  .projects {
+    padding: 72px 24px;
+  }
+
+  .projects h1 {
+    text-align: center;
+  }
+
+  .project-cards {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(450px, 1fr));
+    row-gap: 64px 48px;
+  }
+
+  .project-headings {
+    padding-left: 36px;
+    padding-right: 24px;
+  }
+
+  .card p {
+    padding-left: 24px;
+    padding-right: 36px;
+  }
+
+  .project-headings {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 0;
+    flex-direction: column;
+    gap: 36px;
+  }
+  
+  .contact-details {
+    align-self: start;
+    padding: 36px 24px;
+  }
+  
+  .contact-details h1 {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .icons {
+    justify-content: center;
+  }
+
+  footer img {
+    width: 100vw;
+    object-fit: contain;
   }
 }
